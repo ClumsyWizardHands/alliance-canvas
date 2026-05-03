@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AllianceCanvasWorkspace",
+  "type": "object",
+  "required": ["name", "folder_mounts", "active_skills", "active_ceps", "model_params", "default_crew"],
+  "properties": {
+    "name":        { "type": "string" },
+    "color":       { "type": "string" },
+    "description": { "type": "string" },
+    "folder_mounts": {
+      "type": "object",
+      "properties": {
+        "workshop":         { "type": "string" },
+        "principles_claw":  { "type": "string" },
+        "vault":            { "type": "string" }
+      },
+      "additionalProperties": { "type": "string" }
+    },
+    "active_skills": { "type": "array", "items": { "type": "string" } },
+    "active_ceps":   { "type": "array", "items": { "type": "string" } },
+    "active_tools":  { "type": "array", "items": { "type": "string" } },
+    "default_crew":  { "type": "array", "items": { "type": "string" } },
+    "model_params": {
+      "type": "object",
+      "properties": {
+        "num_ctx":     { "type": "integer" },
+        "temperature": { "type": "number" }
+      }
+    },
+    "tool_valves": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    }
+  }
+}

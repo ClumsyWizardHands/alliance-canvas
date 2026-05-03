@@ -1,0 +1,19 @@
+{
+  "name": "archie",
+  "display_name": "Archie",
+  "model": "archie",
+  "modelfile": "archie.Modelfile",
+  "color": "#10B981",
+  "avatar_emoji": "🟢",
+  "connected": true,
+  "machine": "local",
+  "tool_allowlist": [
+    "ecosystem_glossary",
+    "principles_library",
+    "vault",
+    "web_search",
+    "transcripts"
+  ],
+  "system_prompt_extra": "",
+  "handoff_matrix": {}
+}

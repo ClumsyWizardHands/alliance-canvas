@@ -1,0 +1,81 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AllianceCanvasCard",
+  "type": "object",
+  "required": ["card", "data"],
+  "properties": {
+    "type": { "type": "string", "const": "card" },
+    "card": {
+      "type": "string",
+      "enum": ["SLUTCard", "CEPRoutingCard", "HarvestSummaryCard", "PrincipleQuoteCard", "FallbackCard"]
+    },
+    "data": { "type": "object" }
+  },
+  "definitions": {
+    "SLUTCardData": {
+      "type": "object",
+      "required": ["title", "ripeness", "origin_speaker", "triple_helix"],
+      "properties": {
+        "title":          { "type": "string" },
+        "ripeness":       { "type": "string", "enum": ["green", "red", "purple"] },
+        "origin_speaker": { "type": "string" },
+        "triple_helix": {
+          "type": "object",
+          "properties": {
+            "pollination":           { "type": "string" },
+            "offensive_resilience":  { "type": "string" },
+            "multiversal_grounding": { "type": "string" }
+          }
+        },
+        "cep_anchors": {
+          "type": "object",
+          "properties": {
+            "backward": { "type": "string" },
+            "present":  { "type": "string" },
+            "forward":  { "type": "string" }
+          }
+        },
+        "body_md":   { "type": "string" },
+        "slipknots": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "CEPRoutingCardData": {
+      "type": "object",
+      "required": ["task", "matched_trigger", "cep_slug", "summary"],
+      "properties": {
+        "task":            { "type": "string" },
+        "matched_trigger": { "type": "string" },
+        "cep_slug":        { "type": "string" },
+        "summary":         { "type": "string" }
+      }
+    },
+    "HarvestSummaryCardData": {
+      "type": "object",
+      "required": ["source_name", "draft_count"],
+      "properties": {
+        "source_name":           { "type": "string" },
+        "date":                  { "type": "string" },
+        "draft_count":           { "type": "integer" },
+        "ripeness_distribution": {
+          "type": "object",
+          "properties": {
+            "green":  { "type": "integer" },
+            "red":    { "type": "integer" },
+            "purple": { "type": "integer" }
+          }
+        },
+        "streams": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "PrincipleQuoteCardData": {
+      "type": "object",
+      "required": ["slug", "stack", "quote"],
+      "properties": {
+        "slug":     { "type": "string" },
+        "stack":    { "type": "string", "enum": ["kernel", "rgt", "applied", "skill", "protocols"] },
+        "quote":    { "type": "string" },
+        "title":    { "type": "string" }
+      }
+    }
+  }
+}

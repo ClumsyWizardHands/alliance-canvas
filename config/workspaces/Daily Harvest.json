@@ -1,0 +1,23 @@
+{
+  "name": "Daily Harvest",
+  "color": "#8B5CF6",
+  "description": "Scoped to harvesting. Only the slut-harvest skill is active; CEP-14 is loaded; transcripts + vault tools front-and-center.",
+  "folder_mounts": {
+    "workshop": "~/Desktop/workshop",
+    "principles_claw": "~/principles-claw",
+    "vault": "~/Obsidian/empire-second-brain"
+  },
+  "active_skills": ["slut-harvest"],
+  "active_ceps": ["cep-14-slut-minting"],
+  "active_tools": [
+    "ecosystem_glossary",
+    "principles_library",
+    "vault",
+    "transcripts"
+  ],
+  "model_params": {
+    "num_ctx": 131072,
+    "temperature": 0.5
+  },
+  "default_crew": ["archie"]
+}

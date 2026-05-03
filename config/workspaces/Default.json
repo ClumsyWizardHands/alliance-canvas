@@ -1,0 +1,24 @@
+{
+  "name": "Default",
+  "color": "#10B981",
+  "description": "Everything available — full toolset, all skills, all CEPs, all crew configs.",
+  "folder_mounts": {
+    "workshop": "~/Desktop/workshop",
+    "principles_claw": "~/principles-claw",
+    "vault": "~/Obsidian/empire-second-brain"
+  },
+  "active_skills": [],
+  "active_ceps": [],
+  "active_tools": [
+    "ecosystem_glossary",
+    "principles_library",
+    "vault",
+    "web_search",
+    "transcripts"
+  ],
+  "model_params": {
+    "num_ctx": 131072,
+    "temperature": 0.5
+  },
+  "default_crew": ["archie"]
+}

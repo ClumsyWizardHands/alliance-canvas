@@ -1,0 +1,27 @@
+{
+  "_comment": "Copy to ~/.alliance-canvas/agents/<your-name>.json (drop the .example), edit, restart.",
+
+  "name": "myagent",
+  "display_name": "My Agent",
+
+  "model": "your-ollama-model-tag",
+  "modelfile": null,
+
+  "color": "#10B981",
+  "avatar_emoji": "🤖",
+
+  "connected": true,
+  "machine": "local",
+
+  "tool_allowlist": [
+    "ecosystem_glossary",
+    "principles_library",
+    "vault",
+    "web_search",
+    "transcripts"
+  ],
+
+  "system_prompt_extra": "Optional extra system text appended to your model's Modelfile SYSTEM block.",
+
+  "handoff_matrix": {}
+}

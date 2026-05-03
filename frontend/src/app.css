@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+  body {
+    font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  }
+  .markdown {
+    line-height: 1.55;
+  }
+  .markdown h1, .markdown h2, .markdown h3, .markdown h4 {
+    font-weight: 600;
+    margin-top: 0.9em;
+    margin-bottom: 0.4em;
+  }
+  .markdown h1 { font-size: 1.4rem; }
+  .markdown h2 { font-size: 1.2rem; }
+  .markdown h3 { font-size: 1.05rem; }
+  .markdown p { margin: 0.5em 0; }
+  .markdown ul, .markdown ol { margin: 0.5em 0; padding-left: 1.4em; }
+  .markdown ul { list-style: disc; }
+  .markdown ol { list-style: decimal; }
+  .markdown li { margin: 0.15em 0; }
+  .markdown code {
+    background: rgba(255,255,255,0.07);
+    padding: 0.1em 0.35em;
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.92em;
+  }
+  .markdown pre {
+    background: rgba(0,0,0,0.4);
+    padding: 0.75em 1em;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 0.6em 0;
+    font-size: 0.88em;
+  }
+  .markdown pre code { background: transparent; padding: 0; }
+  .markdown blockquote {
+    border-left: 3px solid rgba(255,255,255,0.2);
+    margin: 0.6em 0;
+    padding: 0.2em 0 0.2em 0.9em;
+    color: rgba(255,255,255,0.75);
+  }
+  .markdown a { color: #93c5fd; text-decoration: underline; text-underline-offset: 2px; }
+  .markdown strong { font-weight: 600; }
+  .markdown hr { border-color: rgba(255,255,255,0.12); margin: 1em 0; }
+}
