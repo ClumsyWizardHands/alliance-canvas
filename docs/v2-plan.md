@@ -240,7 +240,11 @@ This is the *capability* play. Most local models will mis-call bash; that's OK �
 
 1. **Verb palette.** Floating action bar above the composer. Click a verb → it modifies the next turn's behavior (loads relevant CEP, opens sub-agent pane, starts a thread tagged with the verb). Keyboard shortcuts: `cmd+r` ralph, `cmd+m` mint, `cmd+s` scan, etc.
 
-2. **Live CEP scan as you type.** A small worker runs a quick local pass over the draft message against the CEP routing table (titles + triggers). Matches surface as inline chips: "CEP-04 (transcripts) might apply — auto-load?" Click to load; click X to dismiss. **Decision needed (open question 2):** aggressive auto-load, polite suggest-and-confirm, or just-surface-as-chip.
+2. **Live CEP scan + auto-load with always-visible audit trail.** A small worker runs a quick local pass over the draft message against the CEP routing table (titles + triggers). Matches **auto-load on send**, and an **always-visible chip on the assistant message** announces which CEPs (and skills) were active for that turn. Loaded CEPs also write a verb-shaped entry to the session ledger.
+
+   The point: an agent saying "I followed CEP-13" without actually loading CEP-13 is a **Gemmaphore** — a claim that looks verified but isn't. The auto-load + always-announce pattern makes the audit trail structural. The agent cannot claim CEP-X applied unless the canvas can show CEP-X was actually in the system prompt for that turn. (Override is available — dismiss the chip before send — but you can never *accidentally* have the agent assert protocol-following that didn't happen.)
+
+   This is one of the canvas's most empire-distinctive moves: Gemmaphore prevention by UI construction.
 
 3. **Verb-tagged threads & verb-timeline sessions.** Every thread carries a `started_by_verb` tag. The session view becomes a verb timeline: "Tuesday: harvest → ralph → mint → mint → audit." This makes work legible as PBC actions instead of as messages.
 
@@ -264,15 +268,8 @@ This is the *capability* play. Most local models will mis-call bash; that's OK �
 ### Open questions (need Alex's input)
 
 1. **Verb palette scope.** Hand-curated list (faster) or auto-derive from CEPs + skills + ecosystem glossary (more empire-honest)? My lean: hand-curated v2, auto-derive v3.
-2. **CEP auto-loading aggressiveness.** (a) auto-load on match, (b) suggest + confirm, (c) just-surface-as-chip. Three different UX implications. My lean: (b) for v2.
-3. **Pass schema review.** Sketched in Phase 3. Should I formalize as `shared/schemas/pass.schema.json` or do you have prior pass-schema work I should adapt?
-4. **Skill audit scope.** Audit-all (~half day) / port-only-the-portable (~1 day) / defer entirely. My lean: audit-all → classify → port-the-portable.
-5. **Bash + Python UI.** Distinct chips with distinct icons (terminal vs python), same approval gate? My lean: yes, distinct.
-6. **Identity Stack rendering.** Panel inspector / live "what shape is Archie in" viz / diff view ("Modelfile baseline + workspace adds"). My lean: diff view.
-7. **PBC mode toggle scope.** Minimal (palette + chips), Medium (above + verb-tagged threads), Maximal (above + verb dashboard as home). My lean: ship minimal, escalate.
-8. **Sessions vs threads.** Sessions auto-end (idle / EOD) or always manual? My lean: auto-end on 4-hour idle; explicit "start new session" button always available.
-9. **Tool format evolution.** Stay OWUI-compatible (portable) or define canvas-native richer format (CEP refs, output card types, pass schema)? My lean: stay OWUI-compatible v2; canvas-native superset declared in optional metadata block.
-10. **Plan storage location** ✓ resolved: `/docs/v2-plan.md` in repo (this file).
+2. **Sessions vs threads.** Sessions auto-end (idle / EOD) or always manual? My lean: auto-end on 4-hour idle; explicit "start new session" button always available.
+3. **Tool format evolution.** Stay OWUI-compatible (portable) or define canvas-native richer format (CEP refs, output card types, pass schema)? My lean: stay OWUI-compatible v2; canvas-native superset declared in optional metadata block.
 
 ### Decisions logged (already answered)
 
@@ -282,7 +279,13 @@ This is the *capability* play. Most local models will mis-call bash; that's OK �
 - ✓ PBC mode: opt-in toggle (Phase 7), not default
 - ✓ Build for any local Ollama model with tool-calling, not E4B specifically
 - ✓ Verb-native, not noun-native (Phase 7 reframed)
-- ✓ Need a manual override on the live CEP scanner (Phase 7)
+- ✓ Manual override on the live CEP scanner (Phase 7)
+- ✓ **CEP auto-loading: always-on + always-announced** (Phase 7). Not "suggest + confirm." If a CEP matches, it loads; the assistant message gets a permanent chip showing which CEPs/skills were active. Rationale: prevents Gemmaphores — an agent claiming protocol-following the UI can't verify. The audit trail is structural, not optional.
+- ✓ Skill audit: full audit of all skill sources (anthropic-skills, atlas/.claude/skills, claude-code session skills); classify each as port/adapt/skip; the inventory itself is valuable
+- ✓ Identity Stack: **diff view** ("Modelfile baseline + here's what this workspace adds")
+- ✓ Pass schema: use sketch as placeholder in Phase 3; formalize as `shared/schemas/pass.schema.json` in a later pass
+- ✓ PBC mode toggle scope: **minimal** (palette + chips) for v2; expand based on use
+- ✓ Bash + Python: distinct chips with distinct icons (terminal / snake), same approval gate
 
 ---
 
